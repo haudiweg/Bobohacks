@@ -17,49 +17,49 @@ while true; do
     import -window $wid -depth 2 test.jpg
     if [[ -n $debug ]]; then
         echo -e "
-        bayfree             $(echo $(convert test.jpg -crop "155x105+1332+910" jpg:- |compare -metric MAE - click/bayfree.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        seach               $(echo $(convert test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        factorybotsearch    $(echo $(convert test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        botfactoryget       $(echo $(convert test.jpg -crop "2707x21+0+1028" jpg:- |compare -metric MAE - click/botfactoryget.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        buyscreen           $(echo $(convert test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        buybotmenu          $(echo $(convert test.jpg -crop "1054x516+434+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        delbot              $(echo $(convert test.jpg -crop "144x24+705+861" jpg:- |compare -metric MAE - click/delbot.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        delbotmenu          $(echo $(convert test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        doubledell          $(echo $(convert test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        errordontdell       $(echo $(convert test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        playmenu            $(echo $(convert test.jpg -crop "925x488+0+578" jpg:- |compare -metric MAE - click/playmenu.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        falsebot            $(echo $(convert test.jpg -crop "1955x504+431+283" jpg:- |compare -metric MAE - click/falsebot.jpg null 2>&1)| awk '{print int($1+0.5)}')
-        friends             $(echo $(convert test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null 2>&1)| awk '{print int($1+0.5)}')
+        bayfree             $(echo $(convert test.jpg -crop "155x105+1332+910" jpg:- |compare -metric MAE - click/bayfree.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        seach               $(echo $(convert test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        factorybotsearch    $(echo $(convert test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        botfactoryget       $(echo $(convert test.jpg -crop "2707x21+0+1028" jpg:- |compare -metric MAE - click/botfactoryget.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        buyscreen           $(echo $(convert test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        buybotmenu          $(echo $(convert test.jpg -crop "1054x516+434+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        delbot              $(echo $(convert test.jpg -crop "144x24+705+861" jpg:- |compare -metric MAE - click/delbot.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        delbotmenu          $(echo $(convert test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        doubledell          $(echo $(convert test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        errordontdell       $(echo $(convert test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        playmenu            $(echo $(convert test.jpg -crop "925x488+0+578" jpg:- |compare -metric MAE - click/playmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        falsebot            $(echo $(convert test.jpg -crop "1955x504+431+283" jpg:- |compare -metric MAE - click/falsebot.jpg null: 2>&1)| awk '{print int($1+0.5)}')
+        friends             $(echo $(convert test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null: 2>&1)| awk '{print int($1+0.5)}')
 
         "
     fi
 
-    if [ "$(echo $(convert test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 380 ]; then
+    if [ "$(echo $(convert test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 380 ]; then
         xdotool mousemove --window $wid 1085 615 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\nf1'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 400 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 400 ]; then
         xdotool mousemove --window $wid 1392 933 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\nf2'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "925x488+0+578" jpg:- |compare -metric MAE - click/playmenu.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 800 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "925x488+0+578" jpg:- |compare -metric MAE - click/playmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 800 ]; then
         xdotool mousemove --window $wid 55 49 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\nf3'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 600 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 600 ]; then
         xdotool key --window $wid n
         if [[ -n $debug ]]; then
             echo -e '\friends1'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "155x105+1332+910" jpg:- |compare -metric MAE - click/bayfree.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 420 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "155x105+1332+910" jpg:- |compare -metric MAE - click/bayfree.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 420 ]; then
         xdotool key --window $wid p
         if [[ -n $debug ]]; then
             echo -e '\n1'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 717 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 717 ]; then
         xdotool mousemove --window $wid 1339 122
         xdotool click --window $wid 1
         xdotool type --window $wid MAIGA
@@ -69,17 +69,17 @@ while true; do
         if [[ -n $debug ]]; then
             echo -e '\n2'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 1400 ]; then 
+    elif [ "$(echo $(convert test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 1400 ]; then 
         xdotool mousemove --window $wid 395 221 click --window $wid 1
         if [[ -n $debug ]]; then
             echo '\n3'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "1054x516+434+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 700 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "1054x516+434+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 700 ]; then
         xdotool mousemove --window $wid 647 772 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\n6'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "1955x504+431+283" jpg:- |compare -metric MAE - click/falsebot.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 500 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "1955x504+431+283" jpg:- |compare -metric MAE - click/falsebot.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 500 ]; then
         xdotool mousemove --window $wid 1317 797
         xdotool click --window $wid 1
         sleep 0.5
@@ -91,22 +91,22 @@ while true; do
         if [[ -n $debug ]]; then
             echo -e '\nf4'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 700 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 700 ]; then
         xdotool mousemove --window $wid 901 450 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\n5'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "2707x21+0+1028" jpg:- |compare -metric MAE - click/botfactoryget.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 12000 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "2707x21+0+1028" jpg:- |compare -metric MAE - click/botfactoryget.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 12000 ]; then
         xdotool mousemove --window $wid 1645 606 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\n4'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 5000 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 5000 ]; then
         xdotool mousemove --window $wid 834 626 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\n8'
         fi
-    elif [ "$(echo $(convert test.jpg -crop "144x24+705+861" jpg:- |compare -metric MAE - click/delbot.jpg null 2>&1)| awk '{print int($1+0.5)}')" -lt 5200 ]; then
+    elif [ "$(echo $(convert test.jpg -crop "144x24+705+861" jpg:- |compare -metric MAE - click/delbot.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 5200 ]; then
         xdotool mousemove --window $wid 1475 871 click --window $wid 1
         if [[ -n $debug ]]; then
             echo -e '\n7'
