@@ -1,8 +1,8 @@
-
 #!/bin/bash
+echo "rc should be in full hd window (fullscreen) fastest gpu settings and all slots exept 99 and 100 should be full"
 function doubledell(){
     if [ "$(echo $(convert $tmp_dir/test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 380 ]; then
-        xdotool mousemove --window $wid 1085 615 click --window $wid 1
+        xdotool mouecho "rc should be in full hd window (fullscreen) fastest gpu settings and all slots exept 99 and 100 should be full"semove --window $wid 1085 615 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\nf1';fi
         return 1
     else
