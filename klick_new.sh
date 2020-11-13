@@ -1,8 +1,9 @@
 #!/bin/bash
+searchnamevar="jp458r6v"
 echo "rc should be in full hd window (fullscreen) fastest gpu settings and all slots exept 99 and 100 should be full"
 function doubledell(){
     if [ "$(echo $(convert $tmp_dir/test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 380 ]; then
-        xdotool mouecho "rc should be in full hd window (fullscreen) fastest gpu settings and all slots exept 99 and 100 should be full"semove --window $wid 1085 615 click --window $wid 1
+        xdotool mousemove --window $wid 1085 615 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\nf1';fi
         return 1
     else
@@ -10,7 +11,7 @@ function doubledell(){
     fi
 }
 function errordontdell(){
-    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 400 ]; then
+    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 470 ]; then
         xdotool mousemove --window $wid 1392 933 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\nf2';fi
         return 1
@@ -28,7 +29,7 @@ function playmenu(){
     fi
 }
 function friends(){
-    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 600 ]; then
+    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 1000 ]; then
         xdotool key --window $wid n
         if [[ -n $debug ]]; then echo -e '\friends1';fi
         return 1
@@ -49,9 +50,7 @@ function seach(){
     if [ "$(echo $(convert $tmp_dir/test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 717 ]; then
         xdotool mousemove --window $wid 1339 122
         xdotool click --window $wid 1
-        xdotool type --window $wid MAIGA
-        xdotool key --window $wid space
-        xdotool type --window $wid Cow
+        xdotool type --window $wid $searchnamevar
         xdotool key --window $wid Return
         if [[ -n $debug ]]; then echo -e '\n2';fi
         return 1
@@ -69,7 +68,7 @@ function factorybotsearch(){
     fi
 }
 function buybotmenu(){
-    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "1054x516+434+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 700 ]; then
+    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "1070x516+418+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 4310 ]; then
         xdotool mousemove --window $wid 647 772 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\n6';fi
         return 1
@@ -94,7 +93,7 @@ function falsebot(){
     fi
 }
 function buyscreen(){
-    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 700 ]; then
+    if [ "$(echo $(convert $tmp_dir/test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 1900 ]; then
         xdotool mousemove --window $wid 901 450 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\n5';fi
         checklist=(
@@ -145,7 +144,9 @@ function delbotmenu(){
     if [ "$(echo $(convert $tmp_dir/test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 5000 ]; then
         xdotool mousemove --window $wid 834 626 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\n8';fi
+        sleep 0.5
         checklist=(
+            "friends"
             "bayfree"
             "seach"
             "factorybotsearch"
@@ -158,7 +159,6 @@ function delbotmenu(){
             "errordontdell"
             "playmenu"
             "falsebot"
-            "friends"
         )
         return 1
     else
@@ -170,6 +170,7 @@ function delbot(){
         xdotool mousemove --window $wid 1475 871 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\n7';fi
         checklist=(
+            "errordontdell"
             "delbotmenu"
             "bayfree"
             "seach"
@@ -179,7 +180,6 @@ function delbot(){
             "buybotmenu"
             "delbot"
             "doubledell"
-            "errordontdell"
             "playmenu"
             "falsebot"
             "friends"
@@ -224,21 +224,21 @@ xdotool click --window $wid 1
 while true; do
     import -window $wid -depth 2 $tmp_dir/test.jpg
     if [[ -n $debug ]]; then
-        echo -e "
-        bayfree             $(echo $(convert $tmp_dir/test.jpg -crop "155x105+1332+910" jpg:- |compare -metric MAE - click/bayfree.jpg null: 2>&1)| awk '{print int($1+0.5)}')  420
-        seach               $(echo $(convert $tmp_dir/test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null: 2>&1)| awk '{print int($1+0.5)}')  717
-        factorybotsearch    $(echo $(convert $tmp_dir/test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null: 2>&1)| awk '{print int($1+0.5)}')  1400
-        botfactoryget       $(echo $(convert $tmp_dir/test.jpg -crop "2707x21+0+1028" jpg:- |compare -metric MAE - click/botfactoryget.jpg null: 2>&1)| awk '{print int($1+0.5)}')  12000
-        buyscreen           $(echo $(convert $tmp_dir/test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null: 2>&1)| awk '{print int($1+0.5)}')  700
-        buybotmenu          $(echo $(convert $tmp_dir/test.jpg -crop "1054x516+434+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')  700
-        delbot              $(echo $(convert $tmp_dir/test.jpg -crop "144x24+705+861" jpg:- |compare -metric MAE - click/delbot.jpg null: 2>&1)| awk '{print int($1+0.5)}')  5200
-        delbotmenu          $(echo $(convert $tmp_dir/test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')  5000
-        doubledell          $(echo $(convert $tmp_dir/test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null: 2>&1)| awk '{print int($1+0.5)}')  380
-        errordontdell       $(echo $(convert $tmp_dir/test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null: 2>&1)| awk '{print int($1+0.5)}')  400
-        playmenu            $(echo $(convert $tmp_dir/test.jpg -crop "925x488+0+578" jpg:- |compare -metric MAE - click/playmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')  800
-        falsebot            $(echo $(convert $tmp_dir/test.jpg -crop "1955x504+431+283" jpg:- |compare -metric MAE - click/falsebot.jpg null: 2>&1)| awk '{print int($1+0.5)}')  500
-        friends             $(echo $(convert $tmp_dir/test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null: 2>&1)| awk '{print int($1+0.5)}')  600
-        "
+        printf "%2i  %-26s%16s%16s\n" \
+ 0 "Name" "number" " actschwelle"\
+ 1 "bayfree"             $(echo $(convert $tmp_dir/test.jpg -crop "155x105+1332+910" jpg:- |compare -metric MAE - click/bayfree.jpg null: 2>&1)| awk '{print int($1+0.5)}')  420 \
+ 2 "seach"               $(echo $(convert $tmp_dir/test.jpg -crop "1882x40+19+98" jpg:- |compare -metric MAE - click/seach.jpg null: 2>&1)| awk '{print int($1+0.5)}')  717 \
+ 3 "factorybotsearch"    $(echo $(convert $tmp_dir/test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null: 2>&1)| awk '{print int($1+0.5)}')  1400 \
+ 4 "botfactoryget"       $(echo $(convert $tmp_dir/test.jpg -crop "2707x21+0+1028" jpg:- |compare -metric MAE - click/botfactoryget.jpg null: 2>&1)| awk '{print int($1+0.5)}')  12000 \
+ 5 "buyscreen"           $(echo $(convert $tmp_dir/test.jpg -crop "1046x213+438+534" jpg:- |compare -metric MAE - click/buyscreen.jpg null: 2>&1)| awk '{print int($1+0.5)}')  1900 \
+ 6 "buybotmenu"          $(echo $(convert $tmp_dir/test.jpg -crop "1070x516+418+284" jpg:- |compare -metric MAE - click/buybotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')  4310 \
+ 7 "delbot"              $(echo $(convert $tmp_dir/test.jpg -crop "144x24+705+861" jpg:- |compare -metric MAE - click/delbot.jpg null: 2>&1)| awk '{print int($1+0.5)}')  5200 \
+ 8 "delbotmenu"          $(echo $(convert $tmp_dir/test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')  5000 \
+ 9 "doubledell"          $(echo $(convert $tmp_dir/test.jpg -crop "117x446+732+438" jpg:- |compare -metric MAE - click/doubledell.jpg null: 2>&1)| awk '{print int($1+0.5)}')  380 \
+10 "errordontdell"       $(echo $(convert $tmp_dir/test.jpg -crop "162x140+1506+908" jpg:- |compare -metric MAE - click/errordontdell.jpg null: 2>&1)| awk '{print int($1+0.5)}')  470 \
+11 "playmenu"            $(echo $(convert $tmp_dir/test.jpg -crop "925x488+0+578" jpg:- |compare -metric MAE - click/playmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')  800  \
+12 "falsebot"            $(echo $(convert $tmp_dir/test.jpg -crop "1955x504+431+283" jpg:- |compare -metric MAE - click/falsebot.jpg null: 2>&1)| awk '{print int($1+0.5)}')  500 \
+13  "friends"            $(echo $(convert $tmp_dir/test.jpg -crop "243x74+1651+133" jpg:- |compare -metric MAE - click/friends.jpg null: 2>&1)| awk '{print int($1+0.5)}')  1000
     fi
     for ((i=0; i<${#checklist[@]}; i++)); do
         ${checklist[$i]}
