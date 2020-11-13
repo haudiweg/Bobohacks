@@ -60,6 +60,7 @@ function seach(){
 }
 function factorybotsearch(){
     if [ "$(echo $(convert $tmp_dir/test.jpg -crop "337x24+130+148" jpg:- |compare -metric MAE - click/factorybotsearch.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 1400 ]; then 
+        sleep 0.5
         xdotool mousemove --window $wid 395 221 click --window $wid 1
         if [[ -n $debug ]]; then echo '\n3';fi
         return 1
@@ -144,7 +145,7 @@ function delbotmenu(){
     if [ "$(echo $(convert $tmp_dir/test.jpg -crop "461x202+727+437" jpg:- |compare -metric MAE - click/delbotmenu.jpg null: 2>&1)| awk '{print int($1+0.5)}')" -lt 5000 ]; then
         xdotool mousemove --window $wid 834 626 click --window $wid 1
         if [[ -n $debug ]]; then echo -e '\n8';fi
-        sleep 0.5
+        sleep 1
         checklist=(
             "friends"
             "bayfree"
